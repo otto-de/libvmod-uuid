@@ -1,11 +1,11 @@
-varnishtest "Test uuid vmod"
+vtest "Test uuid vmod"
 
 server s1 {
        rxreq
        txresp
 } -start
 
-varnish v1 -vcl+backend {
+vcache v1 -vcl+backend {
    import ${vmod_uuid};
 
    sub vcl_deliver {

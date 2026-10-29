@@ -31,17 +31,16 @@ AC_ARG_WITH([rst2man],
 	[RST2MAN="$withval"],
 	[AC_CHECK_PROGS(RST2MAN, [rst2man rst2man.py], [])])
 
-m4_ifndef([VARNISH_PREREQ], AC_MSG_ERROR([Need varnish.m4 -- see INSTALL.rst]))
+m4_ifndef([VCACHE_REQUIRE], AC_MSG_ERROR([Need vinyl.m4 or varnish.m4 -- see INSTALL.rst]))
 
-VARNISH_PREREQ([5.0.0])
-VARNISH_VMODS([uuid])
+VCACHE_REQUIRE(
+        [[vinyl], [9.1.0]],
+        [[varnish], [9.1.0]]
+)
+VCACHE_VMODS([uuid])
 
 VMOD_TESTS="$(cd $srcdir/src && echo tests/*.vtc)"
 AC_SUBST(VMOD_TESTS)
-
-PKG_CHECK_VAR([LIBVARNISHAPI_LIBDIR], [varnishapi], [libdir])
-AC_SUBST([VARNISH_LIBRARY_PATH],
-	[$LIBVARNISHAPI_LIBDIR:$LIBVARNISHAPI_LIBDIR/varnish])
 
 AC_CONFIG_FILES([
 	Makefile

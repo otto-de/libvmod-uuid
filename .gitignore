@@ -8,6 +8,8 @@ Makefile.in
 *~
 *.[1-9]
 .dirstamp
+vmod_vcs_version.txt
+*.tar.gz
 
 /aclocal.m4
 /autom4te.cache/

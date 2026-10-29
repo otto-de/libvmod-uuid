@@ -1,11 +1,11 @@
-varnishtest "Test the various uuid versions"
+vtest "Test the various uuid versions"
 
 server s1 -repeat 2 {
        rxreq
        txresp
 } -start
 
-varnish v1 -vcl+backend {
+vcache v1 -vcl+backend {
    import ${vmod_uuid};
 
    sub vcl_deliver {
